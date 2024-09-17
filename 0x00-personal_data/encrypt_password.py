@@ -9,7 +9,7 @@ def hash_password(password: str) -> bytes:
     """
     Hash a given password
     """
-    password = password.encode('uft-8')
+    password = password.encode('utf-8')
 
     return bcrypt.hashpw(password, bcrypt.gensalt())
 
