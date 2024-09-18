@@ -15,9 +15,18 @@ class Auth:
     """
     def require_auth(self, path: str, excluded_paths: t.List[str]) -> bool:
         """
-        Template for upcoming tasks
+        Check if path is to be excluded
         """
-        return False
+        if (path is None) or (not excluded_paths):
+            return True
+
+        if not path.endswith('/'):
+            path += '/'
+
+        if path in excluded_paths:
+            return False
+
+        return True
 
     def authorization_header(self, request: Request = None) -> str:
         """
@@ -30,3 +39,13 @@ class Auth:
         Template for upcoming tasks
         """
         return None
+
+a = Auth()
+
+print(a.require_auth(None, None))
+print(a.require_auth(None, []))
+print(a.require_auth("/api/v1/status/", []))
+print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/status", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/users", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/users", ["/api/v1/status/", "/api/v1/stats"]))
