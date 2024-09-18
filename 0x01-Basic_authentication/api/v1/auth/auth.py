@@ -6,6 +6,8 @@ from flask import request
 import typing as t
 from werkzeug.wrappers import Request
 
+UserType = t.TypeVar('User')
+
 
 class Auth:
     """
@@ -18,6 +20,12 @@ class Auth:
         return False
 
     def authorization_header(self, request: Request = None) -> str:
+        """
+        Template for upcoming tasks
+        """
+        return None
+
+    def current_user(self, request: Request = None) -> UserType:
         """
         Template for upcoming tasks
         """
