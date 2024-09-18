@@ -30,22 +30,15 @@ class Auth:
 
     def authorization_header(self, request: Request = None) -> str:
         """
-        Template for upcoming tasks
+        Validate requests
         """
-        return None
+        if request is None:
+            return None
+
+        return request.headers.get('Authorization', None)
 
     def current_user(self, request: Request = None) -> UserType:
         """
         Template for upcoming tasks
         """
         return None
-
-a = Auth()
-
-print(a.require_auth(None, None))
-print(a.require_auth(None, []))
-print(a.require_auth("/api/v1/status/", []))
-print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/status", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/users", ["/api/v1/status/"]))
-print(a.require_auth("/api/v1/users", ["/api/v1/status/", "/api/v1/stats"]))
