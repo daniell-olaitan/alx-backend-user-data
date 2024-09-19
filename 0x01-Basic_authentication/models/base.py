@@ -10,7 +10,7 @@ import uuid
 
 TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S"
 DATA = {}
-Base_Type = TypeVar('Base')
+BaseType = TypeVar('Base')
 
 
 class Base():
@@ -36,7 +36,7 @@ class Base():
         else:
             self.updated_at = datetime.now()
 
-    def __eq__(self, other: Base_Type) -> bool:
+    def __eq__(self, other: BaseType) -> bool:
         """ Equality
         """
         if type(self) != type(other):
@@ -110,20 +110,20 @@ class Base():
         return len(DATA[s_class].keys())
 
     @classmethod
-    def all(cls) -> Iterable[Base_Type]:
+    def all(cls) -> Iterable[BaseType]:
         """ Return all objects
         """
         return cls.search()
 
     @classmethod
-    def get(cls, id: str) -> Base_Type:
+    def get(cls, id: str) -> BaseType:
         """ Return one object by ID
         """
         s_class = cls.__name__
         return DATA[s_class].get(id)
 
     @classmethod
-    def search(cls, attributes: dict = {}) -> List[Base_Type]:
+    def search(cls, attributes: dict = {}) -> List[BaseType]:
         """ Search all objects with matching attributes
         """
         s_class = cls.__name__

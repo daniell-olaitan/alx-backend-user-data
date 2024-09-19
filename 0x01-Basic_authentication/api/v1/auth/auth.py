@@ -15,7 +15,7 @@ class Auth:
     """
     def require_auth(self, path: str, excluded_paths: t.List[str]) -> bool:
         """
-        Check if path is to be excluded
+        Check if path requires authentication
         """
         if (path is None) or (not excluded_paths):
             return True
@@ -23,14 +23,18 @@ class Auth:
         if not path.endswith('/'):
             path += '/'
 
-        if path in excluded_paths:
-            return False
+        for excluded_path in excluded_paths:
+            if excluded_path.endswith('*'):
+                excluded_path = excluded_path[:-1]
+
+            if excluded_path in path:
+                return False
 
         return True
 
     def authorization_header(self, request: Request = None) -> str:
         """
-        Validate requests
+        Get the authorization header from the request
         """
         if request is None:
             return None
@@ -39,6 +43,6 @@ class Auth:
 
     def current_user(self, request: Request = None) -> UserType:
         """
-        Template for upcoming tasks
+        Get the current authenticated user
         """
         return None
