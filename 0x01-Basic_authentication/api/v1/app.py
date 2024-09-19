@@ -5,10 +5,9 @@ Route module for the API
 from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
-from flask_cors import (CORS, cross_origin)
+from flask_cors import CORS
 from api.v1.auth.auth import Auth
 from api.v1.auth.basic_auth import BasicAuth
-import os
 
 
 app = Flask(__name__)
@@ -38,7 +37,6 @@ def validate_user():
             abort(401)
 
         if auth.current_user(request) is None:
-            print('here')
             abort(403)
 
 

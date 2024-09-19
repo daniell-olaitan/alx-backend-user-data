@@ -7,6 +7,7 @@ from api.v1.auth.auth import (
    UserType
 )
 import base64
+import binascii
 import typing as t
 from models.user import User
 from werkzeug.wrappers import Request
@@ -50,7 +51,8 @@ class BasicAuth(Auth):
             auth_bytes = base64.b64decode(base64_bytes)
 
             return auth_bytes.decode('utf-8')
-        except: return None
+        except binascii.Error:
+            return None
 
     def extract_user_credentials(
         self,
@@ -89,7 +91,6 @@ class BasicAuth(Auth):
             return None
 
         users = User.search({'email': user_email})
-        print(f"users: {users}")
         if len(users) > 0:
             for user in users:
                 if user.is_valid_password(user_pwd):
