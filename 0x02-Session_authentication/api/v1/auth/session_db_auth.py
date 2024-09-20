@@ -19,6 +19,9 @@ class SessionDBAuth(SessionExpAuth):
         """
         Create a user session
         """
+        if user_id is None:
+            return None
+
         session_id = super().create_session(user_id)
         user_session = UserSession(
             user_id=user_id,

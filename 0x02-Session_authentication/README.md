@@ -1,1 +1,3 @@
-Directory contains all the tasks in the 0x02-Session_authentication project.
+# Session Authentication
+
+This Project contains all the various tasks to implement User Session Authentication.
