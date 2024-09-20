@@ -7,14 +7,13 @@ from flask import (
     jsonify,
     abort
 )
-from flask.typing import ResponseReturnValue
 from os import getenv
 from models.user import User
 from api.v1.views import app_views
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def login() -> ResponseReturnValue:
+def login() -> str:
     """
     Login in user
     """
@@ -56,7 +55,7 @@ def login() -> ResponseReturnValue:
     methods=['DELETE'],
     strict_slashes=False
 )
-def logout() -> ResponseReturnValue:
+def logout() -> str:
     """
     Log out user
     """
