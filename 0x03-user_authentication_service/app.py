@@ -108,7 +108,7 @@ def get_reset_password_token() -> str:
         abort(403)
 
 
-@app.route('/reset-password', methods=['PUT'])
+@app.route('/reset_password', methods=['PUT'])
 def update_password() -> str:
     """
     Update password

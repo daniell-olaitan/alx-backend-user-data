@@ -44,7 +44,7 @@ class DB:
 
         return user
 
-    def find_user_by(self, **kwargs: t.Mapping) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """
         Get a user using attributes
         """
@@ -57,7 +57,7 @@ class DB:
         except Exception:
             raise InvalidRequestError
 
-    def update_user(self, user_id: int, **kwargs: t.Mapping) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """
         Update a given user
         """
